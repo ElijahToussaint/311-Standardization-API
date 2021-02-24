@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content {
+    padding: 10px;
+    min-height: 100%;
+    margin: 0 auto -50px;
+}
+
+.footer, .push {
+    height: 50px;
+    padding: 15px 10px;
+}
+
+li {
+    list-style-image: url('folder.svg');
+    padding: 0;
+    margin: 0;
+}
+
+li li {
+    list-style-image: url('file.svg');
+    padding: 0;
+    margin: 0;
+}
