@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<ul>
+   
+    {% for city in cities %}
+    <li>
+        <span type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{city['city']}}" aria-expanded="false"
+            aria-controls="collapse{{city['city']}}">
+            {{ city['city'] }}
+        </span>
+        <ul class="collapse" id="collapse{{city['city']}}">
+            {% for file in city['files'] %}
+            <li>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#Modal{{ city['city'] }}{{ city['files'].index(file) }}">
+                    {{ file }}
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="Modal{{ city['city'] }}{{ city['files'].index(file) }}" tabindex="-1"
+                    aria-labelledby="ModalLabel{{ city['city'] }}{{ city['files'].index(file) }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalLabel{{ city['city'] }}{{ city['files'].index(file) }}"><i class="bi bi-folder"></i> {{ city['city'] }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <i class="bi bi-file-earmark"></i> {{file}}
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-primary" href="/standardized_data/311_standardized/{{city['city']}}/{{file}}" target="blank" download>
+                                    <i class="bi bi-download"></i> Download CSV File
+                                </a>
+                                <a class="btn btn-primary" href="/json/standardized_data/311_standardized/{{city['city']}}/{{file}}" target="blank">
+                                    <i class="bi bi-download"></i> Download JSON File
+                                </a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
